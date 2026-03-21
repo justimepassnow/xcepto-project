@@ -9,9 +9,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.99382716, 1)
 script = ExtResource("1_i6348")
 
+[node name="RadarCenter" type="Node2D" parent="." unique_id=1633498338]
+position = Vector2(576, 600)
+scale = Vector2(27.999842, -16.500057)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="RadarCenter" unique_id=1367760896]
+current = true
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=264644983]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +28,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.105240576, 0.10524035, 0.10524041, 1)
-
-[node name="SndMissile" type="AudioStreamPlayer2D" parent="." unique_id=969069193]
-
-[node name="SndAsteroid" type="AudioStreamPlayer2D" parent="." unique_id=1827815810]

@@ -24,17 +24,18 @@ var peer = ENetMultiplayerPeer.new()
 @onready var btn_mech = $LobbyContainer/RoleContainer/MechButton
 
 # --- GAME STATE ---
-# Dictionary tracks which Peer ID holds which role. 0 means empty.
 var roles = {"Navigator": 0, "Gunner": 0, "Mechanic": 0}
+var global_ship_health = 100
+var current_ui = null # Tracks the player's screen so we can delete it on Game Over
 
 func _ready():
 	# Connect Menu
 	host_btn.pressed.connect(_on_host_pressed)
 	join_btn.pressed.connect(_on_join_pressed)
 	start_btn.pressed.connect(_on_start_pressed)
-	start_btn.hide() # Hide start button initially
+	start_btn.hide() 
 	
-	# Connect Role Buttons (Using bind to pass the role string)
+	# Connect Role Buttons 
 	btn_nav.pressed.connect(_request_role.bind("Navigator"))
 	btn_gun.pressed.connect(_request_role.bind("Gunner"))
 	btn_mech.pressed.connect(_request_role.bind("Mechanic"))
@@ -59,8 +60,6 @@ func _on_host_pressed():
 	
 	menu_container.hide()
 	lobby_container.show()
-	
-	# Updated text to remind the Host to pick a role!
 	ip_label.text = "IP: " + get_local_ip() + " | Please select your role."
 	player_list.add_item("You are the Host (ID: 1)")
 
@@ -81,39 +80,26 @@ func _on_join_pressed():
 	ip_label.text = "Connected! Please select a role."
 
 # --- 2. THE ROLE SELECTION LOGIC ---
-
-# Step A: Player clicks a button and asks the server for the role
 func _request_role(role_name: String):
-	# Send the request to the Host (Peer ID 1)
 	receive_role_request.rpc_id(1, role_name)
 
-# Step B: The Server receives the request and checks if it's allowed
 @rpc("any_peer", "call_local")
 func receive_role_request(requested_role: String):
-	if not multiplayer.is_server(): return # Only the Host runs this
+	if not multiplayer.is_server(): return 
 	
 	var sender_id = multiplayer.get_remote_sender_id()
-	
-	# Check if the role is completely empty
 	if roles[requested_role] == 0:
-		# Remove this player from any previous role they had
 		for r in roles:
 			if roles[r] == sender_id:
 				roles[r] = 0
-		
-		# Assign the new role
 		roles[requested_role] = sender_id
-		
-		# Tell EVERYONE to update their buttons
 		sync_roles.rpc(roles)
 
-# Step C: Everyone updates their screen based on the Server's ruling
 @rpc("authority", "call_local")
 func sync_roles(new_roles: Dictionary):
 	roles = new_roles
 	var my_id = multiplayer.get_unique_id()
 	
-	# Update button text and disable them if someone else took it
 	btn_nav.text = "Navigator (Taken)" if roles["Navigator"] != 0 else "Select Navigator"
 	btn_nav.disabled = (roles["Navigator"] != 0 and roles["Navigator"] != my_id)
 	
@@ -123,12 +109,12 @@ func sync_roles(new_roles: Dictionary):
 	btn_mech.text = "Mechanic (Taken)" if roles["Mechanic"] != 0 else "Select Mechanic"
 	btn_mech.disabled = (roles["Mechanic"] != 0 and roles["Mechanic"] != my_id)
 	
-	# Only the Host checks if the game is ready to start
 	if multiplayer.is_server():
+		# NOTE: If you are testing solo, temporarily change this to just: start_btn.show()
 		if roles["Navigator"] != 0 and roles["Gunner"] != 0 and roles["Mechanic"] != 0:
-			start_btn.show() # All roles filled!
+			start_btn.show() 
 		else:
-			start_btn.hide() # Someone unselected a role
+			start_btn.hide() 
 
 # --- 3. CONNECTION EVENTS ---
 func _on_peer_connected(id):
@@ -136,12 +122,10 @@ func _on_peer_connected(id):
 
 func _on_peer_disconnected(id):
 	player_list.add_item("Player " + str(id) + " left.")
-	# If a player disconnects, free up their role!
 	if multiplayer.is_server():
 		for r in roles:
-			if roles[r] == id:
-				roles[r] = 0
-		sync_roles.rpc(roles) # Update buttons
+			if roles[r] == id: roles[r] = 0
+		sync_roles.rpc(roles)
 
 func _on_connected_to_server():
 	player_list.add_item("Successfully joined server!")
@@ -155,10 +139,71 @@ func start_match():
 	lobby_container.hide()
 	var my_id = multiplayer.get_unique_id()
 	
-	# Figure out which role I have, and load that specific scene
 	if roles["Navigator"] == my_id:
-		add_child(preload("res://Scenes/NavigatorUI.tscn").instantiate())
+		current_ui = preload("res://Scenes/NavigatorUI.tscn").instantiate()
 	elif roles["Gunner"] == my_id:
-		add_child(preload("res://Scenes/GunnerUI.tscn").instantiate())
+		current_ui = preload("res://Scenes/GunnerUI.tscn").instantiate()
 	elif roles["Mechanic"] == my_id:
-		add_child(preload("res://Scenes/MechanicUI.tscn").instantiate())
+		current_ui = preload("res://Scenes/MechanicUI.tscn").instantiate()
+
+	if current_ui != null:
+		add_child(current_ui)
+
+	# --- START SERVER HEARTBEAT ---
+	if multiplayer.is_server():
+		global_ship_health = 100 # Reset health
+		var game_timer = Timer.new()
+		game_timer.name = "GameLoopTimer"
+		game_timer.wait_time = 4.0 
+		game_timer.autostart = true
+		game_timer.timeout.connect(_on_game_tick)
+		add_child(game_timer)
+
+# --- 5. THE GAME LOOP ---
+func _on_game_tick():
+	var hazards = ["Asteroid", "Missile"]
+	var directions = ["Left", "Right"]
+	var chosen_hazard = hazards.pick_random()
+	var chosen_direction = directions.pick_random()
+	
+	print("SERVER TICK: Spawning ", chosen_hazard, " on the ", chosen_direction, "!")
+	trigger_hazard.rpc(chosen_hazard, chosen_direction)
+
+@rpc("authority", "call_local")
+func trigger_hazard(hazard_type: String, direction: String):
+	# Tell the Navigator screen to draw the dot and play the sound
+	var nav_ui = get_node_or_null("NavigatorScreen") 
+	if nav_ui != null:
+		nav_ui.play_hazard(hazard_type, direction)
+
+# --- 6. GLOBAL HEALTH & GAME OVER ---
+@rpc("any_peer", "call_local")
+func apply_damage(amount: int):
+	if not multiplayer.is_server(): return 
+	
+	global_ship_health -= amount
+	print("SERVER: Ship took damage! Health is now ", global_ship_health)
+	
+	if global_ship_health <= 0:
+		trigger_game_over.rpc()
+
+@rpc("authority", "call_local")
+func trigger_game_over():
+	print("GAME OVER TRIGGERED!")
+	
+	# Stop spawning hazards
+	var timer = get_node_or_null("GameLoopTimer")
+	if timer != null:
+		timer.stop()
+		timer.queue_free() 
+		
+	# Destroy the player's screen
+	if current_ui != null:
+		current_ui.queue_free()
+		
+	# Show Lobby
+	lobby_container.show()
+	ip_label.text = "GAME OVER! THE SHIP WAS DESTROYED."
+	
+	if multiplayer.is_server():
+		start_btn.show()
