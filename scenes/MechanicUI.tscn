@@ -1,16 +1,37 @@
 [gd_scene format=3 uid="uid://7fkrrwkunce5"]
 
+[ext_resource type="Script" uid="uid://ceatlp37bgncd" path="res://Scripts/mechanic_player.gd" id="1_5jll3"]
 [ext_resource type="Texture2D" uid="uid://bvidqw010covn" path="res://assets/astronaut/0.svg" id="1_iiegv"]
-[ext_resource type="Texture2D" uid="uid://vyuotyqbivrs" path="res://assets/astronaut/1.svg" id="2_honk4"]
-[ext_resource type="Texture2D" uid="uid://cmhdsgrmk2nrf" path="res://assets/astronaut/2.svg" id="3_ggmxv"]
-[ext_resource type="Texture2D" uid="uid://dv8cyk5qliccn" path="res://assets/astronaut/3.svg" id="4_orqjv"]
-[ext_resource type="Texture2D" uid="uid://coak8bneaj5xv" path="res://assets/astronaut/4.svg" id="5_rha7n"]
-[ext_resource type="Texture2D" uid="uid://bfvijfamq1bu" path="res://assets/astronaut/5.svg" id="6_btlo2"]
-[ext_resource type="Texture2D" uid="uid://mbaanryrkfvm" path="res://assets/astronaut/6.svg" id="7_q1kjj"]
-[ext_resource type="Texture2D" uid="uid://trxxdyt25tea" path="res://assets/astronaut/7.svg" id="8_21amp"]
-[ext_resource type="Texture2D" uid="uid://bwblqdkvtkry5" path="res://assets/astronaut/8.svg" id="9_djfvr"]
-[ext_resource type="Texture2D" uid="uid://cpgaqgqwtq2oq" path="res://assets/astronaut/9.svg" id="10_thbsf"]
-[ext_resource type="Texture2D" uid="uid://cuiy4gbj2qgj8" path="res://assets/astronaut/10.svg" id="11_y3k6s"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5jll3"]
+load_path = "res://.godot/imported/1.svg-d93a504871942e3a8fab0f594c9dfe4e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_codup"]
+load_path = "res://.godot/imported/2.svg-97ca05f03fb6dc43f6ef8cb125496a73.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qno1n"]
+load_path = "res://.godot/imported/3.svg-7aa8a92aa7e99e7b10bb7702a504d820.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r7rpj"]
+load_path = "res://.godot/imported/4.svg-498ee1678936e34eca975f9ef14c7fce.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kfqos"]
+load_path = "res://.godot/imported/5.svg-68e94a0672ef16c3615a3e34b9c01c76.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fgvdo"]
+load_path = "res://.godot/imported/6.svg-273d77c8dcca2794a2b4bbac84bfcdc1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bfyvy"]
+load_path = "res://.godot/imported/7.svg-aab11db4e6487cedf2370e03759e0493.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vccbr"]
+load_path = "res://.godot/imported/8.svg-c75f20a9b6a854baafeca77b94939edc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tim68"]
+load_path = "res://.godot/imported/9.svg-739d32e80f45192d7efe7a2cc715d1cd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n1tqm"]
+load_path = "res://.godot/imported/10.svg-f86055e3c960c96594a31ad6a0cb99d0.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxcsx"]
 animations = [{
@@ -24,146 +45,42 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_honk4")
+"texture": SubResource("CompressedTexture2D_5jll3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ggmxv")
+"texture": SubResource("CompressedTexture2D_codup")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_orqjv")
+"texture": SubResource("CompressedTexture2D_qno1n")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_rha7n")
+"texture": SubResource("CompressedTexture2D_r7rpj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_btlo2")
+"texture": SubResource("CompressedTexture2D_kfqos")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_q1kjj")
+"texture": SubResource("CompressedTexture2D_fgvdo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_21amp")
+"texture": SubResource("CompressedTexture2D_bfyvy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_djfvr")
+"texture": SubResource("CompressedTexture2D_vccbr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_thbsf")
+"texture": SubResource("CompressedTexture2D_tim68")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_y3k6s")
+"texture": SubResource("CompressedTexture2D_n1tqm")
 }],
 "loop": true,
-"name": &"walk_down",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_honk4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_ggmxv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_orqjv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_rha7n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_btlo2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_q1kjj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_21amp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_djfvr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_thbsf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_y3k6s")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_honk4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_ggmxv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_orqjv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_rha7n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_btlo2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_q1kjj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_21amp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_djfvr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_thbsf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_y3k6s")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_honk4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_ggmxv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_orqjv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_rha7n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_btlo2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_q1kjj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_21amp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_djfvr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_thbsf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_y3k6s")
-}],
-"loop": true,
-"name": &"walk_up",
+"name": &"walk",
 "speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnimb"]
+size = Vector2(126, 118)
 
 [node name="MechanicUi" type="Control" unique_id=97856536]
 layout_mode = 3
@@ -177,9 +94,9 @@ metadata/_edit_use_anchors_ = true
 [node name="SpaceBackground" type="ColorRect" parent="." unique_id=1159729523]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0026041667
+anchor_left = 0.004340278
 anchor_top = 0.0015432099
-anchor_right = 1.0026041
+anchor_right = 1.0043403
 anchor_bottom = 1.0015432
 grow_horizontal = 2
 grow_vertical = 2
@@ -196,13 +113,14 @@ text = "ENGINE ROOM"
 metadata/_edit_use_anchors_ = true
 
 [node name="MechanicPlayer" type="CharacterBody2D" parent="." unique_id=1456514070]
+script = ExtResource("1_5jll3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MechanicPlayer" unique_id=1886391530]
-position = Vector2(573, 288)
 sprite_frames = SubResource("SpriteFrames_qxcsx")
-animation = &"idle"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MechanicPlayer" unique_id=925862749]
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_jnimb")
 
 [node name="HealthLabel" type="Label" parent="." unique_id=723917327]
