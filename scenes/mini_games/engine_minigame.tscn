@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bpvvfh4mstnvf"]
+
+[ext_resource type="Script" uid="uid://1ovuhqmw4nw" path="res://Scripts/mini_games_folder/engine_minigame.gd" id="1_l2dwb"]
+
+[node name="EngineMinigame" type="Control" unique_id=2126886523]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l2dwb")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2021211501]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19771379, 0.19771379, 0.19771379, 1)
+
+[node name="WinLabel" type="Label" parent="." unique_id=1966499049]
+visible = false
+layout_mode = 0
+offset_left = 431.0
+offset_top = 273.0
+offset_right = 704.0
+offset_bottom = 296.0
+text = "Thanks for clearing the stage!"
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=846389732]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="VSlider1" type="VSlider" parent="HBoxContainer" unique_id=649487539]
+layout_mode = 2
+
+[node name="VSlider2" type="VSlider" parent="HBoxContainer" unique_id=1377447728]
+layout_mode = 2
+
+[node name="VSlider3" type="VSlider" parent="HBoxContainer" unique_id=1696352860]
+layout_mode = 2
+
+[node name="WinLabel2" type="Label" parent="." unique_id=1246676938]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Core Stabilized!"
+uppercase = true
