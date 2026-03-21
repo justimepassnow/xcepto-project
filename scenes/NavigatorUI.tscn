@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b648i1fc2f1kh" path="res://Scripts/NavigatorUI.gd" id="1_i6348"]
 
+[sub_resource type="Environment" id="Environment_i6348"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.5
+
 [node name="NavigatorScreen" type="Control" unique_id=995829690]
 layout_mode = 3
 anchors_preset = 15
@@ -30,10 +35,13 @@ scale = Vector2(27.999842, -16.500057)
 current = true
 
 [node name="HealthLabel" type="Label" parent="." unique_id=1488721163]
-layout_mode = 0
-offset_left = 43.26708
-offset_top = 50.0
-offset_right = 182.26707
-offset_bottom = 73.0
+layout_mode = 1
+offset_left = 34.211178
+offset_top = 26.0
+offset_right = 190.1739
+offset_bottom = 58.0
 text = "Ship Health: 100%"
 uppercase = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=27302409]
+environment = SubResource("Environment_i6348")

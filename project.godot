@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="uid://bqtejsb1mand2"
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="viewport"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
