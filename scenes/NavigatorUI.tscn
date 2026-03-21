@@ -33,10 +33,6 @@ texture_repeat = 2
 position = Vector2(604, 114)
 texture = ExtResource("3_wmqoh")
 
-[node name="nearstars" type="ParallaxLayer" parent="ParallaxBackground" unique_id=868063775]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/nearstars" unique_id=1608965580]
-
 [node name="RadarCenter" type="Node2D" parent="." unique_id=1633498338]
 position = Vector2(576, 600)
 scale = Vector2(27.999842, -16.500057)
