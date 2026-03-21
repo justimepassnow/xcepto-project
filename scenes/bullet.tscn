@@ -1,18 +1,24 @@
 [gd_scene format=3 uid="uid://chxsepdqw4msx"]
 
 [ext_resource type="Script" uid="uid://cneyv8gux0itp" path="res://Scripts/bullet.gd" id="1_mkf8s"]
-[ext_resource type="Texture2D" uid="uid://dttce0y3b50kl" path="res://icon.svg" id="2_y25gk"]
+[ext_resource type="Texture2D" uid="uid://cxyt83mawumxp" path="res://assets/gunner_assets/bullet.png" id="2_y25gk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5glv"]
+radius = 26.0
+height = 144.0
 
-[node name="Bullet" type="Area2D" unique_id=2018465278]
+[node name="Bullet" type="Area2D" unique_id=1239849501]
+rotation = 0.024411889
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_mkf8s")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1667730676]
+shape = SubResource("CapsuleShape2D_l5glv")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1992237184]
+position = Vector2(7.6293945e-06, 19.000008)
+rotation = 1.555093
+scale = Vector2(0.09305271, 0.09412063)
 texture = ExtResource("2_y25gk")
-offset = Vector2(0, -50)
-
-[node name="Area2D" type="Area2D" parent="." unique_id=840277608]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=467689595]
-shape = SubResource("RectangleShape2D_y25gk")
+offset = Vector2(0, 1)

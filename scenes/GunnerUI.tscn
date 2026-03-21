@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://vcev7qdj2eml"]
 
 [ext_resource type="Script" uid="uid://box8b35jotwq5" path="res://Scripts/gunner_ui.gd" id="1_n1hwi"]
-[ext_resource type="Script" uid="uid://dnfwir13bfyr2" path="res://Scripts/gun.gd" id="2_f7166"]
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="2_f7166"]
 [ext_resource type="PackedScene" uid="uid://c84pdpectny43" path="res://scenes/Obstacle.tscn" id="2_go3ti"]
-[ext_resource type="Texture2D" uid="uid://cns1gb4khhtfk" path="res://assets/gunner_assets/arrow.png" id="3_yk13x"]
+[ext_resource type="Texture2D" uid="uid://cvlrgljv6juh3" path="res://assets/navigator_ui/far_stars.png" id="3_sxmuv"]
+[ext_resource type="Texture2D" uid="uid://bwqn8a5dbye7r" path="res://assets/gunner_assets/turrent.png" id="4_go3ti"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_go3ti"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_go3ti"]
+radius = 125.09996
 
-[node name="GunnerUi" type="Control" unique_id=532552635]
+[node name="GunnerUi" type="Control" unique_id=532552635 groups=["gunner_ui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,10 +18,23 @@ offset_left = 1.0
 offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 0.004926367
 script = ExtResource("1_n1hwi")
 obstacle_scene = ExtResource("2_go3ti")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1790671379]
+
+[node name="farstars" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1946858390]
+position = Vector2(2, -2)
+motion_mirroring = Vector2(0, 1536)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/farstars" unique_id=118570980]
+texture_repeat = 2
+position = Vector2(604, 114)
+texture = ExtResource("3_sxmuv")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1647071791]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,14 +55,14 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ship" type="CharacterBody2D" parent="." unique_id=499825637 groups=["ship"]]
-position = Vector2(595, 655)
+[node name="obsticale area" type="Area2D" parent="." unique_id=2097678261]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ship" unique_id=1490925905]
-shape = SubResource("RectangleShape2D_go3ti")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="obsticale area" unique_id=1865157382]
+position = Vector2(596, 645)
+polygon = PackedVector2Array(-280, -275, -467, -426, -358, -531, -275, -579, -166, -607, -27, -610, 126, -607, 219, -584, 289, -542, 406, -442, 250, -281, 135, -365, -161, -369)
 
 [node name="Turret" type="Node2D" parent="." unique_id=1225017584]
-position = Vector2(599, 587)
+position = Vector2(593, 647)
 script = ExtResource("2_f7166")
 
 [node name="visionCone" type="Polygon2D" parent="Turret" unique_id=2114019821]
@@ -56,17 +71,22 @@ script = ExtResource("2_f7166")
 position = Vector2(-4, -3)
 
 [node name="GunPivot" type="Node2D" parent="Turret" unique_id=2141911308]
-position = Vector2(2, -14)
 
 [node name="GunSprite" type="Sprite2D" parent="Turret/GunPivot" unique_id=2106641862]
-position = Vector2(-41.000004, 46.999985)
+position = Vector2(1.0831814, -0.97748756)
 rotation = -4.7138963
-scale = Vector2(0.6400968, -0.7887601)
-texture = ExtResource("3_yk13x")
-offset = Vector2(0, 50)
+scale = Vector2(0.31857198, -0.3678891)
+texture = ExtResource("4_go3ti")
+offset = Vector2(-50.427612, -26.270264)
 
 [node name="Muzzile" type="Marker2D" parent="Turret/GunPivot" unique_id=412367529]
-position = Vector2(8, -122)
+position = Vector2(1, -147)
+
+[node name="shipbody" type="Area2D" parent="Turret" unique_id=1026001217 groups=["ship"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Turret/shipbody" unique_id=670173868]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_go3ti")
 
 [node name="HealthLabel" type="Label" parent="." unique_id=870614876]
 layout_mode = 0
