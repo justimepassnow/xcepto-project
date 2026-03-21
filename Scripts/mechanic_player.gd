@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 100.0
 
 @onready var anim = $AnimatedSprite2D
 func _physics_process(_delta):
