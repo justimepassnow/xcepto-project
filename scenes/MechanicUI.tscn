@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ceatlp37bgncd" path="res://Scripts/mechanic_player.gd" id="1_5jll3"]
 [ext_resource type="Texture2D" uid="uid://bvidqw010covn" path="res://assets/astronaut/0.svg" id="1_iiegv"]
-[ext_resource type="Script" path="res://Scripts/mechanic_ui.gd" id="1_qno1n"]
+[ext_resource type="Script" uid="uid://mnawucj7hasu" path="res://Scripts/mechanic_ui.gd" id="1_qno1n"]
 [ext_resource type="Texture2D" uid="uid://c7nrblch261i5" path="res://assets/health_bars.png" id="4_r7rpj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5jll3"]
@@ -143,7 +143,7 @@ offset_top = 16.0
 offset_right = 1144.0
 offset_bottom = 115.0
 pivot_offset = Vector2(-66, -1356)
-value = 50.0
+value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("4_r7rpj")
 texture_progress = ExtResource("4_r7rpj")
