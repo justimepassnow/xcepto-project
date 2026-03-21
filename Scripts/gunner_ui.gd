@@ -1,7 +1,7 @@
 extends Control
 
 signal gunner_fired(direction)
-
+@onready var health_label = $HealthLabel
 func _ready():
 	var left = $HBoxContainer/"Button(left)"
 	var fire = $HBoxContainer/"Button(fire)"
@@ -22,7 +22,7 @@ func _on_fire_pressed():
 func _on_right_pressed():
 	print("RIGHT")
 	emit_signal("gunner_fired", "right")
-@onready var health_label = $HealthLabel
+
 
 # The NetworkManager will automatically find this and run it!
 func update_health_ui(new_health: int):
