@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://h0c0xh8kaxic"]
+
+[ext_resource type="Script" uid="uid://br13ge3k5ae7o" path="res://Scripts/mini_games_folder/circuit_minigame.gd" id="1_6gpuu"]
+
+[node name="CircuitMinigame" type="Control" unique_id=221886514]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6gpuu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1952479968]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20557003, 0.20557003, 0.20557003, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Lines" type="Node2D" parent="." unique_id=1740391492]
+
+[node name="LeftNodes" type="VBoxContainer" parent="." unique_id=1880361005]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.4691358
+anchor_right = 0.034722224
+anchor_bottom = 0.5308642
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Button1" type="Button" parent="LeftNodes" unique_id=836430182]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="LeftNodes" unique_id=1463021345]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="LeftNodes" unique_id=2100392757]
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="LeftNodes" unique_id=1790833474]
+layout_mode = 2
+
+[node name="RightNodes" type="VBoxContainer" parent="." unique_id=310583933]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Button1" type="Button" parent="RightNodes" unique_id=274491937]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="RightNodes" unique_id=1980339273]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="RightNodes" unique_id=1422853317]
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="RightNodes" unique_id=1936009267]
+layout_mode = 2
+
+[node name="WinLabel" type="Label" parent="." unique_id=981513246]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -11.5
+offset_right = 77.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Circuit Rerouted!"
+uppercase = true
