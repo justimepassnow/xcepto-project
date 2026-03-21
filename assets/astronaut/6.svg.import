@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwblqdkvtkry5"
-path="res://.godot/imported/8.svg-ab190ba9694dc60cdb3b2495e8b7bc5f.ctex"
+uid="uid://mbaanryrkfvm"
+path="res://.godot/imported/6.svg-273d77c8dcca2794a2b4bbac84bfcdc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/assets/astronaut/8.svg"
-dest_files=["res://.godot/imported/8.svg-ab190ba9694dc60cdb3b2495e8b7bc5f.ctex"]
+source_file="res://assets/astronaut/6.svg"
+dest_files=["res://.godot/imported/6.svg-273d77c8dcca2794a2b4bbac84bfcdc1.ctex"]
 
 [params]
 

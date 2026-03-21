@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vyvw3cg33o2s"
-path="res://.godot/imported/Boots.svg-cbfa574aefa9fbab83b34f524eb1314c.ctex"
+path="res://.godot/imported/Boots.svg-d2988ac9211e53856b578ea17e97979f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/assets/astronaut/Boots.svg"
-dest_files=["res://.godot/imported/Boots.svg-cbfa574aefa9fbab83b34f524eb1314c.ctex"]
+source_file="res://assets/astronaut/Boots.svg"
+dest_files=["res://.godot/imported/Boots.svg-d2988ac9211e53856b578ea17e97979f.ctex"]
 
 [params]
 

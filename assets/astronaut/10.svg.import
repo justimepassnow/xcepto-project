@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpo8gaert4j8c"
-path="res://.godot/imported/Preview.png-2aa520efa758b79a5325cbd41257c828.ctex"
+uid="uid://cuiy4gbj2qgj8"
+path="res://.godot/imported/10.svg-f86055e3c960c96594a31ad6a0cb99d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/assets/astronaut/Preview.png"
-dest_files=["res://.godot/imported/Preview.png-2aa520efa758b79a5325cbd41257c828.ctex"]
+source_file="res://assets/astronaut/10.svg"
+dest_files=["res://.godot/imported/10.svg-f86055e3c960c96594a31ad6a0cb99d0.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

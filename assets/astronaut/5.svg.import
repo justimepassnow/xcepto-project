@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3vy6gkhmx2sb"
-path="res://.godot/imported/Helmet.svg-79a8f5dca2f10fff0e3a854b1766b047.ctex"
+uid="uid://bfvijfamq1bu"
+path="res://.godot/imported/5.svg-68e94a0672ef16c3615a3e34b9c01c76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/assets/astronaut/Helmet.svg"
-dest_files=["res://.godot/imported/Helmet.svg-79a8f5dca2f10fff0e3a854b1766b047.ctex"]
+source_file="res://assets/astronaut/5.svg"
+dest_files=["res://.godot/imported/5.svg-68e94a0672ef16c3615a3e34b9c01c76.ctex"]
 
 [params]
 

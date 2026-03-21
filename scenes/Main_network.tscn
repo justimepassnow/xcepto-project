@@ -68,7 +68,7 @@ text = "gunner"
 
 [node name="MechButton" type="Button" parent="LobbyContainer/RoleContainer" unique_id=511860397]
 layout_mode = 2
-text = "mecahnic"
+text = "mechanic"
 
 [node name="StartButton" type="Button" parent="LobbyContainer" unique_id=2087653383]
 layout_mode = 2

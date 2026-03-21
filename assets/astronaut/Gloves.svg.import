@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://trxxdyt25tea"
-path="res://.godot/imported/7.svg-f8a48b81c1acf0fe37d91ea91b93687b.ctex"
+uid="uid://cjebmfiipkdvk"
+path="res://.godot/imported/Gloves.svg-a6a2ca7c0a60fa768c92a75e56e301bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/assets/astronaut/7.svg"
-dest_files=["res://.godot/imported/7.svg-f8a48b81c1acf0fe37d91ea91b93687b.ctex"]
+source_file="res://assets/astronaut/Gloves.svg"
+dest_files=["res://.godot/imported/Gloves.svg-a6a2ca7c0a60fa768c92a75e56e301bf.ctex"]
 
 [params]
 
