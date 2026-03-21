@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ceatlp37bgncd" path="res://Scripts/mechanic_player.gd" id="1_5jll3"]
 [ext_resource type="Texture2D" uid="uid://bvidqw010covn" path="res://assets/astronaut/0.svg" id="1_iiegv"]
-[ext_resource type="Script" uid="uid://mnawucj7hasu" path="res://mechanic_ui.gd" id="1_qno1n"]
+[ext_resource type="Script" uid="uid://mnawucj7hasu" path="res://Scripts/mechanic_ui.gd" id="1_qno1n"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5jll3"]
 load_path = "res://.godot/imported/1.svg-d93a504871942e3a8fab0f594c9dfe4e.ctex"
