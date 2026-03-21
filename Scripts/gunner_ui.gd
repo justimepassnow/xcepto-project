@@ -8,6 +8,7 @@ signal gunner_fired(direction)
 @onready var parallax_bg = $ParallaxBackground
 @export var obstacle_scene: PackedScene
 
+var sfx_ship_hit = preload("res://assets/sounds/ship hit.wav")
 var rotation_step = deg_to_rad(10)
 var min_angle = deg_to_rad(-45)
 var max_angle = deg_to_rad(45)
@@ -76,3 +77,24 @@ func spawn_obstacle():
 	obs.scale = Vector2(3, 3)
 
 	get_tree().root.add_child.call_deferred(obs)
+func _take_damage(amount: int):
+	# 1. PLAY THE "SHIP HIT" SOUND EFFECT
+	var hit_player = AudioStreamPlayer.new()
+	hit_player.stream = sfx_ship_hit
+	add_child(hit_player)
+	hit_player.play()
+	hit_player.finished.connect(func(): hit_player.queue_free())
+
+	# 2. NOTIFY THE SERVER (Matches Navigator exactly)
+	if get_parent().has_method("apply_damage"):
+		get_parent().apply_damage.rpc_id(1, amount)
+	
+	# 3. VISUAL FLASH
+	var flash = ColorRect.new()
+	flash.set_anchors_preset(PRESET_FULL_RECT)
+	flash.color = Color(1, 0, 0, 0.4) 
+	add_child(flash)
+	
+	get_tree().create_timer(0.2).timeout.connect(func(): 
+		if is_instance_valid(flash): flash.queue_free()
+	)
