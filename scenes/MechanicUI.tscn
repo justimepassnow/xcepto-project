@@ -3,10 +3,8 @@
 [ext_resource type="Script" uid="uid://ceatlp37bgncd" path="res://Scripts/mechanic_player.gd" id="1_5jll3"]
 [ext_resource type="Texture2D" uid="uid://bvidqw010covn" path="res://assets/astronaut/0.svg" id="1_iiegv"]
 [ext_resource type="Script" uid="uid://mnawucj7hasu" path="res://Scripts/mechanic_ui.gd" id="1_qno1n"]
+[ext_resource type="Texture2D" uid="uid://dscy3qeqbh4o0" path="res://assets/background.png" id="2_kfqos"]
 [ext_resource type="Texture2D" uid="uid://c7nrblch261i5" path="res://assets/health_bars.png" id="4_r7rpj"]
-
-[sub_resource type="TileSet" id="TileSet_r7rpj"]
-tile_size = Vector2i(64, 64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5jll3"]
 load_path = "res://.godot/imported/1.svg-d93a504871942e3a8fab0f594c9dfe4e.ctex"
@@ -85,7 +83,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnimb"]
-size = Vector2(126, 118)
+size = Vector2(49, 44)
 
 [node name="MechanicUi" type="Control" unique_id=97856536]
 layout_mode = 3
@@ -97,66 +95,60 @@ grow_vertical = 2
 script = ExtResource("1_qno1n")
 metadata/_edit_use_anchors_ = true
 
-[node name="SpaceBackground" type="ColorRect" parent="." unique_id=1159729523]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.004340278
-anchor_top = 0.0015432099
-anchor_right = 1.0043403
-anchor_bottom = 1.0015432
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.00013033328, 0.00013033328, 0.00034471275, 1)
-metadata/_edit_use_anchors_ = true
+[node name="Level" type="Node2D" parent="." unique_id=837785366]
 
-[node name="ShipFloor" type="TileMap" parent="." unique_id=715889309]
-tile_set = SubResource("TileSet_r7rpj")
-format = 2
-
-[node name="EngineRoom" type="Button" parent="." unique_id=427774812]
-layout_mode = 1
+[node name="EngineRoom" type="Button" parent="Level" unique_id=427774812]
 anchors_preset = -1
 anchor_left = -0.050347224
 anchor_top = -0.26234567
 anchor_right = -0.050347224
 anchor_bottom = -0.26234567
-offset_left = 215.0
-offset_top = 298.0
-offset_right = 337.0
-offset_bottom = 329.0
+offset_left = 157.0
+offset_top = 128.0
+offset_right = 279.0
+offset_bottom = 159.0
 text = "ENGINE ROOM"
 metadata/_edit_use_anchors_ = true
 
-[node name="MechanicPlayer" type="CharacterBody2D" parent="." unique_id=1456514070]
+[node name="Sprite2D" type="Sprite2D" parent="Level" unique_id=1750204791]
+position = Vector2(565, 317)
+scale = Vector2(1.6927621, 1.7506776)
+texture = ExtResource("2_kfqos")
+
+[node name="MechanicPlayer" type="CharacterBody2D" parent="Level" unique_id=1456514070]
 script = ExtResource("1_5jll3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MechanicPlayer" unique_id=1886391530]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Level/MechanicPlayer" unique_id=1886391530]
+position = Vector2(285, 134)
+scale = Vector2(0.3632811, 0.33984378)
 sprite_frames = SubResource("SpriteFrames_qxcsx")
 animation = &"walk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MechanicPlayer" unique_id=925862749]
-position = Vector2(2, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/MechanicPlayer" unique_id=925862749]
+position = Vector2(285, 133)
 shape = SubResource("RectangleShape2D_jnimb")
-
-[node name="HealthLabel" type="Label" parent="." unique_id=723917327]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 35.0
-offset_right = 209.0
-offset_bottom = 58.0
-text = "Ship Health: 100%"
-uppercase = true
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=904297249]
 
 [node name="ShipHealthBar" type="TextureProgressBar" parent="HUD" unique_id=787902034]
-offset_left = 756.0
-offset_top = 16.0
-offset_right = 1144.0
-offset_bottom = 115.0
+offset_left = 762.0
+offset_right = 1150.0
+offset_bottom = 99.0
 pivot_offset = Vector2(-66, -1356)
 value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("4_r7rpj")
 texture_progress = ExtResource("4_r7rpj")
 tint_under = Color(0.25765854, 0.25765854, 0.25765854, 1)
+
+[node name="HealthLabel" type="Label" parent="HUD" unique_id=723917327]
+offset_left = 887.0
+offset_top = 12.0
+offset_right = 1038.0
+offset_bottom = 35.0
+text = "Ship Health: 100%"
+uppercase = true
+
+[node name="InvisibleWalls" type="StaticBody2D" parent="." unique_id=1469679405]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InvisibleWalls" unique_id=72339832]
