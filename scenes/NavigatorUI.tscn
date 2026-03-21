@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqtejsb1mand2"]
 
 [ext_resource type="Script" uid="uid://b648i1fc2f1kh" path="res://Scripts/NavigatorUI.gd" id="1_i6348"]
+[ext_resource type="Texture2D" uid="uid://cvlrgljv6juh3" path="res://assets/navigator_ui/far_stars.png" id="3_wmqoh"]
 
 [sub_resource type="Environment" id="Environment_i6348"]
 background_mode = 3
@@ -12,20 +13,25 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 4.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.99382716, 1)
 script = ExtResource("1_i6348")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=264644983]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.105240576, 0.10524035, 0.10524041, 1)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=364693229]
+
+[node name="farstars" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1083868162]
+position = Vector2(2, -2)
+motion_mirroring = Vector2(0, 1536)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/farstars" unique_id=570676794]
+texture_repeat = 2
+position = Vector2(604, 114)
+texture = ExtResource("3_wmqoh")
 
 [node name="RadarCenter" type="Node2D" parent="." unique_id=1633498338]
 position = Vector2(576, 600)
