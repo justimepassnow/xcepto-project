@@ -23,11 +23,20 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="." unique_id=620993007]
 layout_mode = 0
-offset_left = 394.0
-offset_top = 74.0
-offset_right = 744.0
-offset_bottom = 97.0
-text = "Keep the percentage above 45% and 55%!"
+offset_left = 366.0
+offset_top = 69.0
+offset_right = 716.0
+offset_bottom = 92.0
+uppercase = true
+
+[node name="Label2" type="Label" parent="." unique_id=263476614]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 68.0
+offset_right = 483.0
+offset_bottom = 91.0
+text = "keep sum at:"
+horizontal_alignment = 1
 uppercase = true
 
 [node name="WinLabel" type="Label" parent="." unique_id=1966499049]
@@ -48,9 +57,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -295.00003
-offset_top = -55.0
+offset_top = -141.0
 offset_right = -47.0
-offset_bottom = -15.0
+offset_bottom = -69.57126
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.2660892, 2.736348)
@@ -59,11 +68,50 @@ theme_override_constants/separation = 100
 [node name="VSlider1" type="VSlider" parent="HBoxContainer" unique_id=649487539]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="HBoxContainer/VSlider1" unique_id=903348091]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.3238801
+offset_top = 7.2064285
+offset_right = 1.3238792
+offset_bottom = 30.206429
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="VSlider2" type="VSlider" parent="HBoxContainer" unique_id=1377447728]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="HBoxContainer/VSlider2" unique_id=40747237]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.3238801
+offset_top = 7.2064285
+offset_right = 1.3238792
+offset_bottom = 30.206429
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="VSlider3" type="VSlider" parent="HBoxContainer" unique_id=1696352860]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VSlider3" unique_id=1548099926]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.648296
+offset_top = 7.2064285
+offset_right = 3.6482944
+offset_bottom = 30.206429
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="WinLabel2" type="Label" parent="." unique_id=1246676938]
 visible = false

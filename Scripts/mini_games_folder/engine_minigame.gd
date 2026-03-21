@@ -1,30 +1,50 @@
 extends Control
 
-signal task_completed
+# The correct signal is now at the top where Godot expects it
+signal game_finished(success, node)
+
+@onready var label = $Label 
+@onready var win_label = $WinLabel
+@onready var hbox = $HBoxContainer
 
 @onready var slider1 = $HBoxContainer/VSlider1
 @onready var slider2 = $HBoxContainer/VSlider2
 @onready var slider3 = $HBoxContainer/VSlider3
-@onready var win_label = $WinLabel
+
+@onready var val_label1 = $HBoxContainer/VSlider1/Label
+@onready var val_label2 = $HBoxContainer/VSlider2/Label
+@onready var val_label3 = $HBoxContainer/VSlider3/Label
 
 func _ready():
 	win_label.hide()
-	# Scramble the sliders randomly at the start!
+	
+	# Set the target Label text to a random number between 10 and 250
+	label.text = str(randi_range(10, 250)) 
+	
+	# Scramble the sliders randomly at the start
 	slider1.value = randf_range(10, 90)
 	slider2.value = randf_range(10, 90)
 	slider3.value = randf_range(10, 90)
 
 func _process(_delta):
-	# Check if all 3 sliders are in the middle "Safe Zone" (Between 45 and 55)
-	if is_safe(slider1.value) and is_safe(slider2.value) and is_safe(slider3.value):
-		set_process(false) # Stop checking to prevent multiple wins
+	var val1 = round(slider1.value)
+	var val2 = round(slider2.value)
+	var val3 = round(slider3.value)
+	
+	val_label1.text = str(val1)
+	val_label2.text = str(val2)
+	val_label3.text = str(val3)
+	
+	var target_number = int(label.text)
+	var current_sum = val1 + val2 + val3
+	
+	if current_sum == target_number:
+		set_process(false) 
+		label.hide()
+		hbox.hide()
 		win_label.show()
 		
-		# Wait 1.5 seconds, tell the main game we won, and close the window!
 		await get_tree().create_timer(1.5).timeout
-		task_completed.emit()
-		queue_free()
-
-func is_safe(val):
-	# This is our safe zone logic!
-	return val > 45 and val < 55
+		
+		# Emit the correct signal to the main scene
+		game_finished.emit(true, self)

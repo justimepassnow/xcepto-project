@@ -179,9 +179,8 @@ texture_rotation = 4.1381755
 polygon = PackedVector2Array(-89.375, -27.75, -100.75, 20.041656, -133.25, 49.33333, -166, 94, -160, 126, -156, 144, -146, 153, -152.75, 194.24997, -118.625, 209.66663, -56.875, 200.41663, 91, 155.70831, 102.375, 58.58333, 73.125, 13.875, 53.625, -43.166656, -45.5, -50.875)
 
 [node name="MechanicPlayer" type="CharacterBody2D" parent="." unique_id=1456514070]
-position = Vector2(218, 122)
+position = Vector2(193, 123)
 script = ExtResource("1_5jll3")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MechanicPlayer" unique_id=1886391530]
 position = Vector2(285, 134)

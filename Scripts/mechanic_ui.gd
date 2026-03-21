@@ -12,7 +12,7 @@ var player_current_room = null
 var is_minigame_active = false # The Gatekeeper!
 # The dynamic player tracker!
 var current_player_node = null 
-
+var current_ship_health: int = 100
 # --- UI & NODE REFERENCES ---
 @onready var health_label = $HUD/HealthLabel
 @onready var health_bar = $HUD/ShipHealthBar
@@ -48,6 +48,13 @@ func _process(delta):
 # ==========================================
 
 func trigger_new_emergency():
+	# --- THE HEALTH CHECK ---
+	if current_ship_health >= 75:
+		print("Health is ", current_ship_health, "% - Skipping emergency.")
+		start_next_emergency_timer() # Check again in 5 seconds
+		return
+	# ------------------------
+
 	var available_rooms = []
 	for room in rooms:
 		if room != player_current_room:
@@ -58,7 +65,6 @@ func trigger_new_emergency():
 		if current_emergency_room.has_node("Glow"):
 			current_emergency_room.get_node("Glow").visible = true
 		print("ALERT! System broken in: ", current_emergency_room.name)
-
 
 func _on_player_entered_room(body, room):
 	# Wait for the actual mechanic
@@ -106,8 +112,7 @@ func _on_repair_button_pressed():
 	print("Loading Random Minigame...")
 	
 	var minigame_paths = [
-		"res://scenes/mini_games/engine_minigame.tscn",
-		"res://scenes/mini_games/filter_minigame.tscn"
+		"res://scenes/mini_games/engine_minigame.tscn"
 	]
 	
 	var random_path = minigame_paths.pick_random()
@@ -119,6 +124,8 @@ func _on_repair_button_pressed():
 	
 
 func _on_minigame_completed(success: bool, minigame_node: Node):
+	is_minigame_active = false # <-- ADD THIS LINE to unlock the gatekeeper!
+	
 	minigame_node.queue_free()
 	
 	# UNFREEZE THE PLAYER using the dynamic node!
@@ -144,6 +151,8 @@ func start_next_emergency_timer():
 # ==========================================
 
 func update_health_ui(new_health: int):
+	current_ship_health = new_health # <-- ADD THIS LINE
+	
 	if health_label != null:
 		health_label.text = "Ship Health: " + str(new_health) + "%"
 		if new_health <= 30:
