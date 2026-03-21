@@ -9,7 +9,7 @@ const RADAR_RANGE = 500.0
 const COLLISION_RADIUS = 40.0 # The "Hit Zone" around the ship!
 
 @onready var radar_center = $RadarCenter
-
+@onready var health_label = $HealthLabel
 var sfx_missile = preload("res://assets/sounds/missileincoming.wav")
 var sfx_asteroid = preload("res://assets/sounds/astroids.wav")
 
@@ -132,5 +132,15 @@ func play_hazard(hazard_type: String, direction: String):
 		active_missile = hazard_data
 	else:
 		active_asteroid = hazard_data
+# --- NETWORK UI UPDATES ---
+func update_health_ui(new_health: int):
+	if health_label != null:
+		health_label.text = "Ship Health: " + str(new_health) + "%"
+		
+		# Hackathon Polish: Turn the text RED if health drops to 30 or below!
+		if new_health <= 30:
+			health_label.add_theme_color_override("font_color", Color.RED)
+		else:
+			health_label.add_theme_color_override("font_color", Color.WHITE)
 
 # (The old local test timer has been removed because NetworkManager handles it now!)

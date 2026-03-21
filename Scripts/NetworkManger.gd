@@ -184,8 +184,34 @@ func apply_damage(amount: int):
 	global_ship_health -= amount
 	print("SERVER: Ship took damage! Health is now ", global_ship_health)
 	
+	# NEW: Tell every single player's screen to update their health visual!
+	update_health_displays.rpc(global_ship_health)
+	
 	if global_ship_health <= 0:
 		trigger_game_over.rpc()
+
+# NEW: The Mechanic uses this to heal the ship!
+@rpc("any_peer", "call_local")
+func heal_ship(amount: int):
+	if not multiplayer.is_server(): return 
+	
+	global_ship_health += amount
+	if global_ship_health > 100:
+		global_ship_health = 100 # Cap at 100 max health
+	
+	print("SERVER: Ship healed! Health is now ", global_ship_health)
+	
+	# Tell everyone the good news!
+	update_health_displays.rpc(global_ship_health)
+
+# NEW: The function that actually talks to the UI scenes
+@rpc("authority", "call_local")
+func update_health_displays(new_health: int):
+	global_ship_health = new_health # Make sure local clients know the exact number
+	
+	# If the player's screen has a function called "update_health_ui", run it!
+	if current_ui != null and current_ui.has_method("update_health_ui"):
+		current_ui.update_health_ui(new_health)
 
 @rpc("authority", "call_local")
 func trigger_game_over():
