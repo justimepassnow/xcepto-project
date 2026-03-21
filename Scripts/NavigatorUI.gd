@@ -9,13 +9,16 @@ const SHIP_SPEED = 250.0
 
 @onready var radar_center = $RadarCenter
 @onready var health_label = $HealthLabel
+@onready var parallax_bg = $ParallaxBackground
+var scroll_speed = 150.0 # Speed of the "ship" moving forward
 
 var sfx_missile = preload("res://assets/sounds/missileincoming.wav")
 var sfx_asteroid = preload("res://assets/sounds/astroids.wav")
+var sfx_ship_hit = preload("res://assets/sounds/ship hit.wav")
 
 var active_missile = null
 var active_asteroid = null
-
+var last_known_health = 100 # To track if health went up or down
 func _ready():
 	# Solo test mode remains for your local F6 testing
 	if get_parent() == get_tree().root:
@@ -29,18 +32,25 @@ func _on_test_timer_fired():
 	play_hazard(["Asteroid", "Missile"].pick_random(), ["Left", "Right"].pick_random())
 
 func _process(delta):
-	# DODGING (A/D or Arrows)
+	# --- 1. INFINITE PARALLAX SCROLLING ---
+	# This moves the background layers downward to simulate forward flight.
+	# Make sure you have @onready var parallax_bg = $ParallaxBackground at the top!
+	if is_instance_valid(parallax_bg):
+		parallax_bg.scroll_offset.y += 100.0 * delta # 150.0 is your "Ship Speed"
+	
+	# --- 2. DODGING (A/D or Arrows) ---
 	var move_dir = Input.get_axis("ui_left", "ui_right")
 	radar_center.position.x += move_dir * SHIP_SPEED * delta
 	radar_center.position.x = clamp(radar_center.position.x, 100, 1052)
-
-	# MOVE HAZARDS
+	
+	# --- 3. MOVE HAZARDS ---
 	if active_missile != null:
 		_move_and_check_collision(active_missile, delta, 25)
 
 	if active_asteroid != null:
 		_move_and_check_collision(active_asteroid, delta, 15)
 		
+	# Redraw the radar UI lines and ship every frame
 	queue_redraw()
 
 func _move_and_check_collision(hazard: Dictionary, delta: float, damage: int):
@@ -93,16 +103,27 @@ func _cleanup_hazard(type: String):
 		active_asteroid = null
 
 func _take_damage(amount: int):
+	# 1. PLAY THE "SHIP HIT" SOUND EFFECT
+	var hit_player = AudioStreamPlayer.new()
+	hit_player.stream = sfx_ship_hit
+	add_child(hit_player)
+	hit_player.play()
+	# Automatically delete the audio player when the sound finishes to save memory
+	hit_player.finished.connect(func(): hit_player.queue_free())
+
+	# 2. NOTIFY THE SERVER
 	if get_parent().has_method("apply_damage"):
 		get_parent().apply_damage.rpc_id(1, amount)
 	
+	# 3. VISUAL FLASH
 	var flash = ColorRect.new()
 	flash.set_anchors_preset(PRESET_FULL_RECT)
 	flash.color = Color(1, 0, 0, 0.4) 
 	add_child(flash)
-	# This timer is ONLY for the visual flash effect, not the hazard!
-	get_tree().create_timer(0.2).timeout.connect(func(): if is_instance_valid(flash): flash.queue_free())
-
+	
+	get_tree().create_timer(0.2).timeout.connect(func(): 
+		if is_instance_valid(flash): flash.queue_free()
+	)
 # --- THE UI DRAWING ---
 func _draw():
 	var center = radar_center.position
@@ -147,7 +168,6 @@ func _draw():
 
 # --- HAZARD SPAWNING ---
 func play_hazard(hazard_type: String, direction: String):
-	# DONT cleanup here. If it exists, let it finish.
 	if hazard_type == "Missile" and active_missile != null: return
 	if hazard_type == "Asteroid" and active_asteroid != null: return
 
@@ -159,6 +179,7 @@ func play_hazard(hazard_type: String, direction: String):
 	var speed = 130.0 if hazard_type == "Missile" else 80.0 
 	var vel = (radar_center.position - spawn_pos).normalized() * speed
 	
+	# --- VISUAL SETUP ---
 	var vis = ColorRect.new()
 	if hazard_type == "Missile":
 		vis.size = Vector2(4, 20)
@@ -170,25 +191,56 @@ func play_hazard(hazard_type: String, direction: String):
 		vis.position = spawn_pos - Vector2(10, 10)
 		vis.color = Color(1.0, 0.6, 0.1)
 		vis.pivot_offset = Vector2(10, 10)
-
 	add_child(vis)
 	
+	# --- DIRECTIONAL AUDIO SETUP ---
 	var aud = AudioStreamPlayer2D.new()
 	aud.position = spawn_pos
 	aud.stream = sfx_missile if hazard_type == "Missile" else sfx_asteroid
-	aud.max_distance = 1000.0
+	
+	# These 3 settings make it "Blind-Playable":
+	aud.max_distance = 1200.0    # Can hear it from far away
+	aud.panning_strength = 4.0   # EXTRA STRONG: Distinct Left vs Right separation
+	aud.attenuation = 2.5        # Sound gets much louder as it hits the ship
+	
 	add_child(aud)
 	aud.play()
 	
 	var hazard_data = {"type": hazard_type, "visual": vis, "audio": aud, "velocity": vel}
-	
 	if hazard_type == "Missile": active_missile = hazard_data
 	else: active_asteroid = hazard_data
-
+	
 func update_health_ui(new_health: int):
+	# 1. Update the Text Label
 	if health_label != null:
 		health_label.text = "Ship Health: " + str(new_health) + "%"
 		health_label.add_theme_color_override("font_color", Color.RED if new_health <= 30 else Color.WHITE)
 
+	# 2. Determine the Voice Message
+	var msg = ""
+	
+	if new_health <= 0:
+		msg = "Ship destroyed. Game over."
+	
+	elif new_health > last_known_health:
+		# The Mechanic repaired the ship!
+		msg = "Mechanic repaired ship. Health " + str(new_health) + " percent."
+	
+	elif new_health <= 30:
+		# Danger zone!
+		msg = "Critical damage! Ship health " + str(new_health) + " percent."
+	
+	else:
+		# Standard hit
+		msg = "Ship has been hit. Current integrity " + str(new_health) + " percent."
+
+	# 3. Speak the message
+	DisplayServer.tts_stop()
+	var voices = DisplayServer.tts_get_voices_for_language("en")
+	var voice_id = voices[0] if voices.size() > 0 else ""
+	DisplayServer.tts_speak(msg, voice_id)
+
+	# 4. Save the current health for the next comparison
+	last_known_health = new_health
 func gunner_destroyed_target(hazard_type: String):
 	_cleanup_hazard(hazard_type)
