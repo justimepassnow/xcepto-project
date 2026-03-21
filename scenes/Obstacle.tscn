@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c84pdpectny43"]
+
+[ext_resource type="Script" uid="uid://ryuabgibwnwj" path="res://Scripts/obstacle.gd" id="1_jde5u"]
+
+[sub_resource type="Gradient" id="Gradient_jde5u"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qf6v3"]
+gradient = SubResource("Gradient_jde5u")
+width = 20
+height = 20
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qf6v3"]
+
+[node name="Obstacle" type="Area2D" unique_id=63900674 groups=["obstacle"]]
+script = ExtResource("1_jde5u")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=35705473]
+texture = SubResource("GradientTexture2D_qf6v3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1243669999]
+shape = SubResource("CircleShape2D_qf6v3")
+
+[connection signal="body_entered" from="." to="." method="_on_obstacle_body_entered"]

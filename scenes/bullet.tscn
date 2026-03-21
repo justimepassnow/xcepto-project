@@ -3,9 +3,16 @@
 [ext_resource type="Script" uid="uid://cneyv8gux0itp" path="res://Scripts/bullet.gd" id="1_mkf8s"]
 [ext_resource type="Texture2D" uid="uid://dttce0y3b50kl" path="res://icon.svg" id="2_y25gk"]
 
-[node name="Bullet" type="Node2D" unique_id=1662235342]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+
+[node name="Bullet" type="Area2D" unique_id=2018465278]
 script = ExtResource("1_mkf8s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1992237184]
 texture = ExtResource("2_y25gk")
 offset = Vector2(0, -50)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=840277608]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=467689595]
+shape = SubResource("RectangleShape2D_y25gk")

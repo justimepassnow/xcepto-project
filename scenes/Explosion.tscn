@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dsa6o0uun8f4p"]
+
+[sub_resource type="Gradient" id="Gradient_rrxks"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6o7x5"]
+gradient = SubResource("Gradient_rrxks")
+width = 31
+height = 32
+fill = 1
+
+[node name="Explosion" type="Node2D" unique_id=905691839]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2050884210]
+emitting = false
+amount = 40
+texture = SubResource("GradientTexture2D_6o7x5")
+lifetime = 0.6
+one_shot = true
+speed_scale = 64.0
+explosiveness = 1.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+color = Color(0.74062, 0.13816217, 0.0986911, 0.9843137)
