@@ -204,3 +204,12 @@ animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MechanicPlayer" unique_id=925862749]
 shape = SubResource("RectangleShape2D_jnimb")
+
+[node name="HealthLabel" type="Label" parent="." unique_id=723917327]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 24.0
+offset_right = 170.0
+offset_bottom = 47.0
+text = "Ship Health: 100%"
+uppercase = true

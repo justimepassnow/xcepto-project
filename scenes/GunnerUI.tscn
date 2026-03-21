@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vcev7qdj2eml"]
 
-[ext_resource type="Script" uid="uid://box8b35jotwq5" path="res://Scripts/gunner_ui.gd" id="1_n1hwi"]
+[ext_resource type="Script" path="res://Scripts/gunner_ui.gd" id="1_n1hwi"]
 
 [node name="GunnerUi" type="Control" unique_id=532552635]
 layout_mode = 3
@@ -41,3 +41,12 @@ size_flags_horizontal = 3
 [node name="visionCone" type="Polygon2D" parent="Turret" unique_id=2114019821]
 
 [node name="GunSprite" type="Sprite2D" parent="Turret" unique_id=451678154]
+
+[node name="HealthLabel" type="Label" parent="." unique_id=870614876]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 49.0
+offset_right = 198.0
+offset_bottom = 72.0
+text = "Ship Health: 100%"
+uppercase = true
