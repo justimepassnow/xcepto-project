@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://82aa21121mw8"]
+
+[ext_resource type="Script" uid="uid://m5ejfdxiy03a" path="res://Scripts/mini_games_folder/o2_minigame.gd" id="1_ivbrr"]
+
+[node name="O2Minigame" type="Control" unique_id=735399731]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ivbrr")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=402991190]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10957054, 0.10957054, 0.10957054, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CodeDisplay" type="Label" parent="." unique_id=1713644923]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="InputDisplay" type="Label" parent="." unique_id=830614948]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1605502155]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Button1" type="Button" parent="GridContainer" unique_id=260992674]
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="GridContainer" unique_id=1290259857]
+layout_mode = 2
+text = "2"
+
+[node name="Button3" type="Button" parent="GridContainer" unique_id=1087230001]
+layout_mode = 2
+text = "3
+"
+
+[node name="Button4" type="Button" parent="GridContainer" unique_id=924114507]
+layout_mode = 2
+text = "4"
+
+[node name="Button5" type="Button" parent="GridContainer" unique_id=4804688]
+layout_mode = 2
+text = "5"
+
+[node name="Button6" type="Button" parent="GridContainer" unique_id=484031304]
+layout_mode = 2
+text = "6"
+
+[node name="Button7" type="Button" parent="GridContainer" unique_id=1025662036]
+layout_mode = 2
+text = "7"
+
+[node name="Button8" type="Button" parent="GridContainer" unique_id=116124417]
+layout_mode = 2
+text = "8"
+
+[node name="Button9" type="Button" parent="GridContainer" unique_id=1967584569]
+layout_mode = 2
+text = "9"
+
+[node name="WinLabel" type="Label" parent="." unique_id=1351841449]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -24.5
+offset_right = 50.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "O2 Restored!
+"
