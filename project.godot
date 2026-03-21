@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="xcepto_project"
-run/main_scene="uid://bqtejsb1mand2"
+run/main_scene="uid://c3iwkga15st34"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+<<<<<<<Updatedupstreamrun/main_scene="uid://bqtejsb1mand2"
 
 [physics]
 
