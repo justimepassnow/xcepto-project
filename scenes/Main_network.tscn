@@ -1,3 +1,76 @@
 [gd_scene format=3 uid="uid://c3iwkga15st34"]
 
-[node name="Node" type="Node" unique_id=1223096706]
+[ext_resource type="Script" uid="uid://cox0w8vdow481" path="res://Scripts/NetworkManger.gd" id="1_j60qf"]
+
+[node name="NetworkManager" type="Control" unique_id=163492606]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j60qf")
+
+[node name="MenuContainer" type="VBoxContainer" parent="." unique_id=882170821]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 100.0
+offset_right = 789.0
+offset_bottom = 525.0
+alignment = 1
+
+[node name="HostButton" type="Button" parent="MenuContainer" unique_id=1043462152]
+layout_mode = 2
+text = "Host Game"
+
+[node name="IPInput" type="LineEdit" parent="MenuContainer" unique_id=233896743]
+layout_mode = 2
+placeholder_text = "IP INPUT"
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="MenuContainer" unique_id=1941291007]
+layout_mode = 2
+text = "Join Game"
+
+[node name="ErrorLabel" type="Label" parent="MenuContainer" unique_id=927582704]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7276869, 0, 0.09852181, 1)
+
+[node name="LobbyContainer" type="VBoxContainer" parent="." unique_id=1510258048]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="IPLabel" type="Label" parent="LobbyContainer" unique_id=99649818]
+layout_mode = 2
+
+[node name="PlayerList" type="ItemList" parent="LobbyContainer" unique_id=821930702]
+layout_mode = 2
+
+[node name="RoleContainer" type="HBoxContainer" parent="LobbyContainer" unique_id=1013572127]
+layout_mode = 2
+alignment = 1
+
+[node name="NavButton" type="Button" parent="LobbyContainer/RoleContainer" unique_id=1823125501]
+layout_mode = 2
+text = "navigator"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="GunButton" type="Button" parent="LobbyContainer/RoleContainer" unique_id=1056102721]
+layout_mode = 2
+text = "gunner"
+
+[node name="MechButton" type="Button" parent="LobbyContainer/RoleContainer" unique_id=511860397]
+layout_mode = 2
+text = "mecahnic"
+
+[node name="StartButton" type="Button" parent="LobbyContainer" unique_id=2087653383]
+layout_mode = 2
+text = "START GAME
+"
