@@ -1,9 +1,43 @@
 [gd_scene format=3 uid="uid://vcev7qdj2eml"]
 
+[ext_resource type="Script" uid="uid://box8b35jotwq5" path="res://Scripts/gunner_ui.gd" id="1_n1hwi"]
+
 [node name="GunnerUi" type="Control" unique_id=532552635]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_n1hwi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1647071791]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Button(left)" type="Button" parent="HBoxContainer" unique_id=597605704]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button(fire)" type="Button" parent="HBoxContainer" unique_id=1726960753]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button(right)" type="Button" parent="HBoxContainer" unique_id=1487361902]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ship" type="Sprite2D" parent="." unique_id=729451767]
+
+[node name="Turret" type="Node2D" parent="." unique_id=1225017584]
+
+[node name="visionCone" type="Polygon2D" parent="Turret" unique_id=2114019821]
+
+[node name="GunSprite" type="Sprite2D" parent="Turret" unique_id=451678154]
