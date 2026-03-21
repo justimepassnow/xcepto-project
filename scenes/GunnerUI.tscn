@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://vcev7qdj2eml"]
 
-[ext_resource type="Script" path="res://Scripts/gunner_ui.gd" id="1_n1hwi"]
+[ext_resource type="Script" uid="uid://box8b35jotwq5" path="res://Scripts/gunner_ui.gd" id="1_n1hwi"]
+[ext_resource type="Script" uid="uid://dnfwir13bfyr2" path="res://Scripts/gun.gd" id="2_f7166"]
+[ext_resource type="Texture2D" uid="uid://cns1gb4khhtfk" path="res://assets/gunner_assets/arrow.png" id="3_yk13x"]
 
 [node name="GunnerUi" type="Control" unique_id=532552635]
 layout_mode = 3
@@ -37,10 +39,26 @@ size_flags_horizontal = 3
 [node name="ship" type="Sprite2D" parent="." unique_id=729451767]
 
 [node name="Turret" type="Node2D" parent="." unique_id=1225017584]
+position = Vector2(599, 587)
+script = ExtResource("2_f7166")
 
 [node name="visionCone" type="Polygon2D" parent="Turret" unique_id=2114019821]
 
-[node name="GunSprite" type="Sprite2D" parent="Turret" unique_id=451678154]
+[node name="BaseSprite" type="Sprite2D" parent="Turret" unique_id=451678154]
+position = Vector2(-4, -3)
+
+[node name="GunPivot" type="Node2D" parent="Turret" unique_id=2141911308]
+position = Vector2(2, -14)
+
+[node name="GunSprite" type="Sprite2D" parent="Turret/GunPivot" unique_id=2106641862]
+position = Vector2(-41.000004, 46.999985)
+rotation = -4.7138963
+scale = Vector2(0.6400968, -0.7887601)
+texture = ExtResource("3_yk13x")
+offset = Vector2(0, 50)
+
+[node name="Muzzile" type="Marker2D" parent="Turret/GunPivot" unique_id=412367529]
+position = Vector2(8, -122)
 
 [node name="HealthLabel" type="Label" parent="." unique_id=870614876]
 layout_mode = 0
