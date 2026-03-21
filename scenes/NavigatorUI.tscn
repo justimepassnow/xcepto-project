@@ -1,9 +1,25 @@
 [gd_scene format=3 uid="uid://bqtejsb1mand2"]
 
-[node name="NavigatorUi" type="Control" unique_id=995829690]
+[ext_resource type="Script" uid="uid://b648i1fc2f1kh" path="res://Scripts/NavigatorUI.gd" id="1_i6348"]
+
+[node name="NavigatorScreen" type="Control" unique_id=995829690]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_i6348")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=264644983]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105240576, 0.10524035, 0.10524041, 1)
+
+[node name="SndMissile" type="AudioStreamPlayer2D" parent="." unique_id=969069193]
+
+[node name="SndAsteroid" type="AudioStreamPlayer2D" parent="." unique_id=1827815810]
