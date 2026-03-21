@@ -77,7 +77,7 @@ func spawn_obstacle():
 	obs.scale = Vector2(3, 3)
 
 	get_tree().root.add_child.call_deferred(obs)
-func _take_damage(amount: int):
+func take_damage(amount: int):
 	# 1. PLAY THE "SHIP HIT" SOUND EFFECT
 	var hit_player = AudioStreamPlayer.new()
 	hit_player.stream = sfx_ship_hit

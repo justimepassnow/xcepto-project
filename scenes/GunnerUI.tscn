@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_go3ti"]
 radius = 125.09996
 
-[node name="GunnerUi" type="Control" unique_id=532552635 groups=["gunner_ui"]]
+[node name="GunnerUi" type="Control" unique_id=532552635 groups=["gunner_ui", "ship"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
