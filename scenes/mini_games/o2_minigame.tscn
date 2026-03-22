@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://82aa21121mw8"]
+[gd_scene format=3 uid="uid://bxum6lk3hl4e4"]
 
 [ext_resource type="Script" uid="uid://m5ejfdxiy03a" path="res://Scripts/mini_games_folder/o2_minigame.gd" id="1_ivbrr"]
 
@@ -26,26 +26,19 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -111.0
-offset_top = 38.0
-offset_right = -71.0
-offset_bottom = 61.0
+offset_left = -107.0
+offset_top = 68.0
+offset_right = 5.652649
+offset_bottom = 108.573586
 grow_horizontal = 2
 scale = Vector2(1.6777235, 0.96121657)
 
 [node name="InputDisplay" type="Label" parent="." unique_id=830614948]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = -200.0
-offset_right = -67.0
-offset_bottom = -177.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 391.0
+offset_top = 156.0
+offset_right = 522.2645
+offset_bottom = 304.2492
 scale = Vector2(2.9558625, 0.3912331)
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1605502155]
@@ -55,10 +48,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -72.0
-offset_top = -114.0
-offset_right = -10.0
-offset_bottom = -13.0
+offset_left = -71.0
+offset_top = -130.0
+offset_right = -9.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.38384, 1.8)
@@ -100,6 +93,10 @@ text = "8"
 [node name="Button9" type="Button" parent="GridContainer" unique_id=1967584569]
 layout_mode = 2
 text = "9"
+
+[node name="Button0" type="Button" parent="GridContainer" unique_id=255301663]
+layout_mode = 2
+text = "0"
 
 [node name="WinLabel" type="Label" parent="." unique_id=1351841449]
 visible = false

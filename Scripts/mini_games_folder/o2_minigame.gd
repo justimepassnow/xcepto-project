@@ -1,6 +1,6 @@
 extends Control
 
-signal task_completed
+signal game_finished(success, node)
 
 # Added type hints for better performance and editor autocomplete
 var correct_code: String = ""
@@ -22,8 +22,9 @@ func _ready() -> void:
 			node.pressed.connect(_on_button_pressed.bind(node.text))
 
 func generate_new_code() -> void:
-	# Generates a random 4-digit code using numbers 1-9
-	correct_code = str(randi_range(1, 9)) + str(randi_range(1, 9)) + str(randi_range(1, 9)) + str(randi_range(1, 9))
+	# Generates a number between 0 and 9999, then formats it as a 4-digit string
+	var raw_num = randi() % 2000
+	correct_code = "%04d" % raw_num # This ensures it's always exactly 4 chars
 	code_display.text = "TARGET O2 CODE: " + correct_code
 	reset_input()
 
@@ -40,21 +41,21 @@ func _on_button_pressed(digit: String) -> void:
 		_check_code()
 
 func _check_code() -> void:
-	is_processing = true # Lock the keypad
+	is_processing = true 
 	
 	if current_input == correct_code:
 		# --- SUCCESS STATE ---
 		input_display.add_theme_color_override("font_color", Color.GREEN)
 		win_label.show()
 		
-		# Disable buttons so they can't be clicked during the closing transition
 		for node in keypad.get_children():
 			if node is Button:
 				node.disabled = true
 				
 		await get_tree().create_timer(1.5).timeout
-		task_completed.emit()
-		queue_free()
+		
+		# Notify MechanicUI (Success = true, node = self)
+		game_finished.emit(true, self)
 		
 	else:
 		# --- FAIL STATE ---

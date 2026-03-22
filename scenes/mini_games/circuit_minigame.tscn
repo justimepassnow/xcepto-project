@@ -11,22 +11,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6gpuu")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1198110826]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.48123693, 0.33077574, 0.20963708, 1)
+
 [node name="Lines" type="Node2D" parent="." unique_id=1740391492]
 
 [node name="LeftNodes" type="VBoxContainer" parent="." unique_id=1880361005]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.4691358
-anchor_right = 0.034722224
-anchor_bottom = 0.5308642
-offset_left = 150.0
-offset_top = -155.0
-offset_right = 150.0
-offset_bottom = -43.0
+anchor_left = 0.28
+anchor_top = 0.31300002
+anchor_right = 0.28
+anchor_bottom = 0.574
+offset_left = -33.559998
+offset_top = 0.17597961
+offset_right = 6.4400024
+offset_bottom = -97.90851
 grow_vertical = 2
 scale = Vector2(1.7029594, 2.3788245)
 localize_numeral_system = false
-theme_override_constants/separation = 40
+theme_override_constants/separation = 10
+alignment = 1
 
 [node name="Button1" type="Button" parent="LeftNodes" unique_id=836430182]
 layout_mode = 2
@@ -37,24 +53,22 @@ layout_mode = 2
 [node name="Button3" type="Button" parent="LeftNodes" unique_id=2100392757]
 layout_mode = 2
 
-[node name="Button4" type="Button" parent="LeftNodes" unique_id=1790833474]
-layout_mode = 2
-
 [node name="RightNodes" type="VBoxContainer" parent="." unique_id=310583933]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -195.99994
-offset_top = -167.99998
-offset_right = -155.99994
-offset_bottom = -16.0
+anchors_preset = -1
+anchor_left = 0.674
+anchor_top = 0.437
+anchor_right = 0.674
+anchor_bottom = 0.437
+offset_left = -37.447937
+offset_top = -73.17598
+offset_right = 2.552063
+offset_bottom = -9.175995
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(1.8799927, 2.2800012)
-theme_override_constants/separation = 40
+theme_override_constants/separation = 10
+alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Button1" type="Button" parent="RightNodes" unique_id=274491937]
@@ -66,20 +80,18 @@ layout_mode = 2
 [node name="Button3" type="Button" parent="RightNodes" unique_id=1422853317]
 layout_mode = 2
 
-[node name="Button4" type="Button" parent="RightNodes" unique_id=1936009267]
-layout_mode = 2
-
 [node name="WinLabel" type="Label" parent="." unique_id=981513246]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -77.0
-offset_top = -11.5
-offset_right = 77.0
-offset_bottom = 11.5
+offset_left = -84.0
+offset_top = -101.0
+offset_right = 70.0
+offset_bottom = -78.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Circuit Rerouted!"

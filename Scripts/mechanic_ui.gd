@@ -112,10 +112,10 @@ func _on_repair_button_pressed():
 	print("Loading Random Minigame...")
 	
 	var minigame_paths = [
-		"res://scenes/mini_games/engine_minigame.tscn",
-		"res://scenes/mini_games/o2_minigame.tscn",
-		"res://scenes/mini_games/circuit_minigame.tscn",
-		"res://scenes/mini_games/filter_minigame.tscn"
+	#"res://scenes/mini_games/engine_minigame.tscn",
+		"res://scenes/mini_games/o2_minigame.tscn"
+		#"res://scenes/mini_games/circuit_minigame.tscn",
+		#"res://scenes/mini_games/filter_minigame.tscn"
 	]
 	
 	var random_path = minigame_paths.pick_random()
