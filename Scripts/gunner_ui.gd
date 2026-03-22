@@ -12,6 +12,7 @@ var sfx_ship_hit = preload("res://assets/sounds/ship hit.wav")
 var rotation_step = deg_to_rad(10)
 var min_angle = deg_to_rad(-45)
 var max_angle = deg_to_rad(45)
+var can_take_damage = true # Our Invincibility Lock
 
 func _ready():
 	spawn_loop()
