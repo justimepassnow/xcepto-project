@@ -27,7 +27,8 @@ var peer = ENetMultiplayerPeer.new()
 var roles = {"Navigator": 0, "Gunner": 0, "Mechanic": 0}
 var global_ship_health = 100
 var current_ui = null # Tracks the player's screen so we can delete it on Game Over
-
+var is_game_over = false # Tracks if the match is already over
+\
 func _ready():
 	# Connect Menu
 	host_btn.pressed.connect(_on_host_pressed)
@@ -136,9 +137,10 @@ func _on_start_pressed():
 
 @rpc("authority", "call_local")
 func start_match():
+	is_game_over = false # <-- ADD THIS LINE to unlock the game!
 	lobby_container.hide()
 	var my_id = multiplayer.get_unique_id()
-	
+	# ... (rest of your start_match code stays the same)
 	if roles["Navigator"] == my_id:
 		current_ui = preload("res://Scenes/NavigatorUI.tscn").instantiate()
 	elif roles["Gunner"] == my_id:
@@ -181,15 +183,18 @@ func trigger_hazard(hazard_type: String, direction: String):
 func apply_damage(amount: int):
 	if not multiplayer.is_server(): return 
 	
+	# THE FIX: If the game is already over, ignore all new incoming damage!
+	if is_game_over: 
+		return 
+	
 	global_ship_health -= amount
 	print("SERVER: Ship took damage! Health is now ", global_ship_health)
 	
-	# NEW: Tell every single player's screen to update their health visual!
 	update_health_displays.rpc(global_ship_health)
 	
 	if global_ship_health <= 0:
+		is_game_over = true # LOCK THE DOOR! No more game overs can trigger.
 		trigger_game_over.rpc()
-
 # NEW: The Mechanic uses this to heal the ship!
 @rpc("any_peer", "call_local")
 func heal_ship(amount: int):

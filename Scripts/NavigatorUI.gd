@@ -105,28 +105,32 @@ func _cleanup_hazard(type: String):
 		active_asteroid = null
 
 func _take_damage(amount: int):
-	# 1. PLAY THE "SHIP HIT" SOUND EFFECT
+	print("💥 ASTEROID HIT THE SHIP! Deducting ", amount, " health.")
+	
+	# 1. FORCE THE UI TO UPDATE LOCALLY IMMEDIATELY
+	last_known_health -= amount
+	last_known_health = max(last_known_health, 0) # Prevent negative numbers
+	update_health_ui(last_known_health)
+
+	# 2. PLAY SOUND
 	var hit_player = AudioStreamPlayer.new()
 	hit_player.stream = sfx_ship_hit
 	add_child(hit_player)
 	hit_player.play()
-	# Automatically delete the audio player when the sound finishes to save memory
 	hit_player.finished.connect(func(): hit_player.queue_free())
 
-	# 2. NOTIFY THE SERVER
+	# 3. NOTIFY SERVER (Keep this for your multiplayer logic)
 	if get_parent().has_method("apply_damage"):
 		get_parent().apply_damage.rpc_id(1, amount)
 	
-	# 3. VISUAL FLASH
+	# 4. VISUAL FLASH
 	var flash = ColorRect.new()
 	flash.set_anchors_preset(PRESET_FULL_RECT)
 	flash.color = Color(1, 0, 0, 0.4) 
 	add_child(flash)
-	
 	get_tree().create_timer(0.2).timeout.connect(func(): 
 		if is_instance_valid(flash): flash.queue_free()
 	)
-
 # --- THE UI DRAWING ---
 func _draw():
 	var center = radar_center.position
