@@ -66,17 +66,28 @@ func spawn_loop():
 
 func spawn_obstacle():
 	if obstacle_scene == null:
-		print("❌ obstacle_scene is not assigned")
 		return
 
 	var obs = obstacle_scene.instantiate()
 
+	# 1. Position at the top of the screen
 	var screen_width = get_viewport_rect().size.x
-	obs.position = Vector2(randi_range(50, int(screen_width - 50)), 50)
+	obs.position = Vector2(randf_range(50, screen_width - 50), -50) # Spawn slightly off-screen top
+
+	# 2. THE ROTATION FIX: Point at the ship/turret
+	# We use ship_body.global_position because obs is being added to the Root
+	if is_instance_valid(ship_body):
+		obs.look_at(ship_body.global_position)
+		
+		# 3. COORDINATE OFFSET: 
+		# If your rocket sprite faces DOWN in the editor, add 90 degrees.
+		# If your rocket sprite faces UP in the editor, add -90 degrees.
+		obs.rotation += deg_to_rad(90) 
 
 	obs.target_node = ship_body
 	obs.scale = Vector2(3, 3)
 
+	# Use call_deferred to avoid physics threading errors
 	get_tree().root.add_child.call_deferred(obs)
 func take_damage(amount: int):
 	# 1. PLAY THE "SHIP HIT" SOUND EFFECT

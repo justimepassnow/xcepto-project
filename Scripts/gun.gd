@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var gun_pivot = $GunPivot
 @onready var muzzle = $GunPivot/Muzzile
-
+@onready var fire_sfx = $GunPivot/Muzzile/FireSFX
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var rotation_step = deg_to_rad(10)
@@ -36,3 +36,9 @@ func _fire():
 	bullet.global_position = muzzle.global_position
 	bullet.rotation = gun_pivot.global_rotation
 	get_tree().current_scene.add_child(bullet)
+	if is_instance_valid(fire_sfx):
+		# We use play(0) to ensure it starts from the beginning every time
+		fire_sfx.play() 
+		
+		# Pro Tip: Slightly randomize the pitch so it doesn't sound repetitive
+		fire_sfx.pitch_scale = randf_range(0.9, 1.1)

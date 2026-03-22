@@ -3,6 +3,8 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 @onready var anim = $AnimatedSprite2D
+@onready var walk_sfx = $WalkSFX
+
 func _physics_process(_delta):
 	var direction_x = Input.get_axis("ui_left", "ui_right")
 	var direction_y = Input.get_axis("ui_up", "ui_down")
@@ -12,7 +14,9 @@ func _physics_process(_delta):
 	
 	if velocity.length() > 0:
 		anim.play("walk")
-		
+		# --- FOOTSTEP AUDIO LOGIC ---
+		if not walk_sfx.playing:
+			walk_sfx.play()
 		# Notice we are rotating 'anim' now, not the whole body!
 		if velocity.x > 0:
 			anim.rotation_degrees = 90  # Right
@@ -25,5 +29,7 @@ func _physics_process(_delta):
 			
 	else:
 		anim.play("idle")
+		# --- STOP AUDIO WHEN STILL ---
+		walk_sfx.stop()
 
 	move_and_slide()

@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://vcev7qdj2eml"]
 
 [ext_resource type="Script" uid="uid://box8b35jotwq5" path="res://Scripts/gunner_ui.gd" id="1_n1hwi"]
-[ext_resource type="Script" path="res://Scripts/gun.gd" id="2_f7166"]
+[ext_resource type="Script" uid="uid://dnfwir13bfyr2" path="res://Scripts/gun.gd" id="2_f7166"]
 [ext_resource type="PackedScene" uid="uid://c84pdpectny43" path="res://scenes/Obstacle.tscn" id="2_go3ti"]
 [ext_resource type="Texture2D" uid="uid://cvlrgljv6juh3" path="res://assets/navigator_ui/far_stars.png" id="3_sxmuv"]
 [ext_resource type="Texture2D" uid="uid://bwqn8a5dbye7r" path="res://assets/gunner_assets/turrent.png" id="4_go3ti"]
+[ext_resource type="AudioStream" uid="uid://cho4p3xrtmaf5" path="res://assets/sounds/missileShooting.wav" id="6_ko6bb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_go3ti"]
 radius = 125.09996
@@ -81,6 +82,10 @@ offset = Vector2(-50.427612, -26.270264)
 
 [node name="Muzzile" type="Marker2D" parent="Turret/GunPivot" unique_id=412367529]
 position = Vector2(1, -147)
+
+[node name="FireSFX" type="AudioStreamPlayer2D" parent="Turret/GunPivot/Muzzile" unique_id=858653962]
+scale = Vector2(0.9999885, 1.0091053)
+stream = ExtResource("6_ko6bb")
 
 [node name="shipbody" type="Area2D" parent="Turret" unique_id=1026001217 groups=["ship"]]
 

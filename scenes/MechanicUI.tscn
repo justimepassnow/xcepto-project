@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c7nrblch261i5" path="res://assets/health_bars.png" id="4_r7rpj"]
 [ext_resource type="Texture2D" uid="uid://x6a36775d5ui" path="res://assets/new_gradient_texture_2d.tres" id="6_bfyvy"]
 [ext_resource type="Texture2D" uid="uid://cvlrgljv6juh3" path="res://assets/navigator_ui/far_stars.png" id="6_fgvdo"]
+[ext_resource type="AudioStream" uid="uid://daagb8ni7aa72" path="res://assets/sounds/walking sound.wav" id="7_vccbr"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5jll3"]
 load_path = "res://.godot/imported/1.svg-d93a504871942e3a8fab0f594c9dfe4e.ctex"
@@ -192,6 +193,11 @@ animation = &"walk"
 position = Vector2(288, 135)
 shape = SubResource("RectangleShape2D_jnimb")
 
+[node name="WalkSFX" type="AudioStreamPlayer2D" parent="MechanicPlayer" unique_id=393423909]
+stream = ExtResource("7_vccbr")
+pitch_scale = 1.58
+attenuation = 1.7411014
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=904297249]
 
 [node name="ShipHealthBar" type="TextureProgressBar" parent="HUD" unique_id=787902034]
@@ -229,3 +235,15 @@ offset_right = 654.0
 offset_bottom = 584.0
 text = "Repair
 "
+
+[node name="Label" type="Label" parent="." unique_id=879727243]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_right = 64.5
+offset_bottom = 23.0
+grow_horizontal = 2
+scale = Vector2(1.56, 1.7599999)
+text = "REPAIR THE SHIP"

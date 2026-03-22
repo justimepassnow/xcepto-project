@@ -34,7 +34,7 @@ position = Vector2(604, 114)
 texture = ExtResource("3_wmqoh")
 
 [node name="RadarCenter" type="Node2D" parent="." unique_id=1633498338]
-position = Vector2(576, 600)
+position = Vector2(623.8509, 597)
 scale = Vector2(27.999842, -16.500057)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="RadarCenter" unique_id=1367760896]
@@ -51,3 +51,15 @@ uppercase = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=27302409]
 environment = SubResource("Environment_i6348")
+
+[node name="Label" type="Label" parent="." unique_id=550368434]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.00003
+offset_right = 86.00003
+offset_bottom = 23.0
+grow_horizontal = 2
+scale = Vector2(1.3710047, 2.0766897)
+text = "DODGE THE ASTROIDS"
