@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://plsgy87a2tql"]
+[gd_scene format=3 uid="uid://dg3fo5is1qcjx"]
 
 [ext_resource type="Script" uid="uid://defljgf0ebfly" path="res://Scripts/mini_games_folder/filter_minigame.gd" id="1_7g0c6"]
 
@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7g0c6")
+total_debris = 10
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1424321838]
 layout_mode = 1
@@ -18,8 +19,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0.13149942, 0.13149942, 0.13149942, 1)
-metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=876871373]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 24.0
+offset_right = 725.0
+offset_bottom = 82.0
+text = "CLEAR THE DEBRIS"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WinLabel" type="Label" parent="." unique_id=978726985]
 layout_mode = 1
