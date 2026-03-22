@@ -49,10 +49,10 @@ func _process(delta):
 
 func trigger_new_emergency():
 	# --- THE HEALTH CHECK ---
-	if current_ship_health >= 75:
-		print("Health is ", current_ship_health, "% - Skipping emergency.")
-		start_next_emergency_timer() # Check again in 5 seconds
-		return
+	#if current_ship_health >= 75:
+		#print("Health is ", current_ship_health, "% - Skipping emergency.")
+		#start_next_emergency_timer() # Check again in 5 seconds
+		#return
 	# ------------------------
 
 	var available_rooms = []
@@ -124,19 +124,27 @@ func _on_repair_button_pressed():
 	
 
 func _on_minigame_completed(success: bool, minigame_node: Node):
-	is_minigame_active = false # <-- ADD THIS LINE to unlock the gatekeeper!
+	is_minigame_active = false 
 	
-	minigame_node.queue_free()
+	# Delete the minigame scene
+	if is_instance_valid(minigame_node):
+		minigame_node.queue_free()
 	
-	# UNFREEZE THE PLAYER using the dynamic node!
+	# Unfreeze the player
 	if current_player_node:
 		current_player_node.set_physics_process(true)
 	
 	if success:
-		print("Task Completed! Ship repaired.")
-		if get_parent().has_method("add_health"):
-			get_parent().add_health.rpc_id(1, 15) 
+		print("Minigame Won! Sending repair signal to server...")
 		
+		# Match the function name in your NetworkManager.gd (heal_ship)
+		if get_parent().has_method("heal_ship"):
+			# Send 15 HP to the server (ID 1)
+			get_parent().heal_ship.rpc_id(1, 15) 
+		else:
+			print("Error: Network Manager is missing heal_ship method!")
+		
+	# Start the wait for the next broken room
 	start_next_emergency_timer()
 
 
